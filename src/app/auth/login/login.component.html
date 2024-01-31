@@ -1,0 +1,30 @@
+<section class="login">
+    <form fxLayoutGap="10px" #f="ngForm" fxLayout="column" fxLayoutAlign="center center" (ngSubmit)="onSubmit(f)">
+
+        <mat-form-field>
+
+            <mat-label>Email</mat-label>
+            <input #emailinput="ngModel" type="email" matInput email ngModel name="email" required
+                placeholder="Enter Your Email">
+            <mat-error *ngIf="emailinput.hasError('required')">Email is <strong>required</strong></mat-error>
+
+            <mat-error *ngIf="!emailinput.hasError('required')"> Please enter a valid email address
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field hintLabel=" Must be at least 6 characters long">
+            <mat-label>Enter your password</mat-label>
+            <input #password="ngModel" matInput [type]="hide ? 'password' : 'text'" password ngModel name="password"
+                placeholder="your password" min="6" required>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="password.hasError('required')">password is <strong>required</strong></mat-error>
+
+
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Submit</button>
+
+
+    </form>
+</section>
